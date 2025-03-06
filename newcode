@@ -1,0 +1,250 @@
+import sys
+import openpyxl
+from PyQt5.QtWidgets import (
+    QApplication, QWidget, QLabel, QLineEdit, QComboBox, QPushButton, 
+    QVBoxLayout, QMessageBox, QFileDialog, QInputDialog
+)
+import csv
+
+class TreeNode:
+    """Représente un nœud dans l'arbre binaire de recherche."""
+    def __init__(self, key, value):
+        self.key = key.lower()
+        self.values = {value.lower()}  # Stocke plusieurs traductions dans un ensemble
+        self.left = None
+        self.right = None
+
+    def add_translation(self, value):
+        """Ajoute une nouvelle traduction à l'ensemble des valeurs."""
+        self.values.add(value.lower())
+
+class TranslationBST:
+    """Arbre binaire pour stocker les traductions."""
+    def __init__(self):
+        self.root = None
+
+    def insert(self, key, value):
+        """Insère un mot et sa traduction dans l'arbre, gérant les homonymes."""
+        self.root = self._insert_recursive(self.root, key, value)
+
+    def _insert_recursive(self, node, key, value):
+        if node is None:
+            return TreeNode(key, value)
+        if key < node.key:
+            node.left = self._insert_recursive(node.left, key, value)
+        elif key > node.key:
+            node.right = self._insert_recursive(node.right, key, value)
+        else:
+            node.add_translation(value)  # Ajoute une traduction si le mot existe déjà
+        return node
+
+    def search(self, key):
+        """Recherche un mot et retourne toutes ses traductions."""
+        node = self._search_recursive(self.root, key)
+        return node.values if node else None
+
+    def _search_recursive(self, node, key):
+        if node is None or node.key == key:
+            return node
+        if key < node.key:
+            return self._search_recursive(node.left, key)
+        return self._search_recursive(node.right, key)
+
+    def batch_insert(self, word_pairs, is_english=True):
+        """Insère plusieurs mots depuis un fichier."""
+        for english, french in word_pairs:
+            if is_english:
+                english_tree.insert(english, french)
+                french_tree.insert(french, english)
+            else:
+                french_tree.insert(french, english)
+                english_tree.insert(english, french)
+
+
+class TranslationWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Translation Tool")
+        self.setFixedSize(400, 350)  # Ajusté pour plus de boutons
+
+        layout = QVBoxLayout()
+
+        self.label = QLabel("You want to translate:")
+        layout.addWidget(self.label)
+
+        self.combo_box = QComboBox()
+        self.combo_box.addItems(["From French to English", "From English to French"])
+        layout.addWidget(self.combo_box)
+
+        self.word_label = QLabel("Word to translate:")
+        layout.addWidget(self.word_label)
+
+        self.word_input = QLineEdit()
+        layout.addWidget(self.word_input)
+
+        # Boutons
+        self.translate_button = QPushButton("Translate")
+        self.translate_button.clicked.connect(self.translate_word)
+        layout.addWidget(self.translate_button)
+
+        self.add_modify_button = QPushButton("Add/Modify Word")
+        self.add_modify_button.clicked.connect(self.add_modify_word)
+        layout.addWidget(self.add_modify_button)
+
+        self.delete_button = QPushButton("Delete Word")
+        self.delete_button.clicked.connect(self.delete_word)
+        layout.addWidget(self.delete_button)
+
+        self.load_button = QPushButton("Load Words from File")
+        self.load_button.clicked.connect(self.load_file)
+        layout.addWidget(self.load_button)
+
+        self.setLayout(layout)
+
+    def translate_word(self):
+        """Recherche et affiche toutes les traductions d'un mot."""
+        word = self.word_input.text().strip().lower()
+        if not word:
+            QMessageBox.warning(self, "Warning", "Please enter a word to translate.")
+            return
+
+        direction = self.combo_box.currentText()
+        tree = french_tree if direction == "From English to French" else english_tree
+        translations = tree.search(word)
+
+        if translations:
+            QMessageBox.information(self, "Translation", f"Translations: {', '.join(translations)}")
+        else:
+            QMessageBox.warning(self, "Not Found", "No translation found.")
+
+    def add_modify_word(self):
+        """Ajoute un mot avec sa traduction (gère plusieurs traductions par mot)."""
+        word = self.word_input.text().strip().lower()
+        if not word:
+            QMessageBox.warning(self, "Warning", "Please enter a word to add or modify.")
+            return
+
+        translation, ok = QInputDialog.getText(self, "Add/Modify", f"Enter translation for '{word}':")
+        if ok and translation:
+            direction = self.combo_box.currentText()
+            if direction == "From French to English":
+                french_tree.insert(word, translation.lower())
+                english_tree.insert(translation.lower(), word)
+            else:
+                english_tree.insert(word, translation.lower())
+                french_tree.insert(translation.lower(), word)
+
+            QMessageBox.information(self, "Success", "Word added/modified successfully!")
+
+    def delete_word(self):
+        """Supprime un mot (et toutes ses traductions)."""
+        word = self.word_input.text().strip().lower()
+        if not word:
+            QMessageBox.warning(self, "Warning", "Please enter a word to delete.")
+            return
+
+        direction = self.combo_box.currentText()
+        if direction == "From French to English":
+            french_tree.root = self.delete_recursive(french_tree.root, word)
+            english_tree.root = self.delete_recursive(english_tree.root, word)
+        else:
+            english_tree.root = self.delete_recursive(english_tree.root, word)
+            french_tree.root = self.delete_recursive(french_tree.root, word)
+
+        QMessageBox.information(self, "Success", "Word deleted successfully!")
+
+    def delete_recursive(self, node, key):
+        """Supprime un nœud dans l'arbre."""
+        if not node:
+            return None
+        if key < node.key:
+            node.left = self.delete_recursive(node.left, key)
+        elif key > node.key:
+            node.right = self.delete_recursive(node.right, key)
+        else:
+            if not node.left:
+                return node.right
+            if not node.right:
+                return node.left
+
+            min_larger_node = self.find_min(node.right)
+            node.key, node.values = min_larger_node.key, min_larger_node.values
+            node.right = self.delete_recursive(node.right, min_larger_node.key)
+
+        return node
+
+    def find_min(self, node):
+        """Trouve le nœud avec la plus petite clé."""
+        while node.left:
+            node = node.left
+        return node
+
+    def load_file(self):
+        """Charge un fichier contenant des traductions (Excel, CSV, ou TXT)."""
+        file_path, _ = QFileDialog.getOpenFileName(self, "Open Translation File", "", 
+                                               "Excel Files (*.xlsx *.xls);;CSV Files (*.csv);;Text Files (*.txt)")
+
+        if not file_path:
+            return
+
+        try:
+        # Determine the file extension
+            file_extension = file_path.split('.')[-1].lower()
+            print(f"Loading file: {file_path} with extension {file_extension}")
+
+            word_pairs = []
+
+            if file_extension == 'xlsx' or file_extension == 'xls':
+            # Handle Excel files
+                wb = openpyxl.load_workbook(file_path)
+                sheet = wb.active
+                for row in sheet.iter_rows(min_row=2, values_only=True):
+                    english, french = row[:2]
+                    if english and french:
+                        word_pairs.append((str(english).lower(), str(french).lower()))
+
+            elif file_extension == 'csv':
+            # Handle CSV files
+                with open(file_path, mode='r', encoding='latin1') as file:
+                    reader = csv.reader(file)
+                    for row in reader:
+                        if len(row) >= 2:  # Check if the row contains at least two columns
+                            english, french = row[:2]
+                            if english and french:
+                                word_pairs.append((str(english).lower(), str(french).lower()))
+
+            elif file_extension == 'txt':
+            # Handle TXT files (assuming one pair per line, like "english_word=french_word")
+                with open(file_path, mode='r', encoding='utf-8') as file:
+                    for line in file:
+                        line = line.strip()
+                        if '=' in line:
+                            english, french = line.split('=')
+                            if english and french:
+                                word_pairs.append((english.strip().lower(), french.strip().lower()))
+
+        # Debugging the word pairs
+            print(f"Word pairs to insert: {word_pairs}")
+
+            if word_pairs:
+            # Insert the word pairs into the trees
+                english_tree.batch_insert(word_pairs, is_english=True)
+                french_tree.batch_insert(word_pairs, is_english=False)
+
+                QMessageBox.information(self, "Success", "Words have been successfully imported!")
+            else:
+                QMessageBox.warning(self, "No Data", "No valid word pairs found in the file.")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to load file:\n{str(e)}")
+
+
+
+if __name__ == "__main__":
+    english_tree = TranslationBST()
+    french_tree = TranslationBST()
+
+    app = QApplication(sys.argv)
+    window = TranslationWindow()
+    window.show()
+    sys.exit(app.exec_())

@@ -1,0 +1,455 @@
+animal	animal
+bird	oiseau
+cat	chat
+dog	chien
+fish	poisson
+horse	cheval
+rabbit	lapin
+snake	serpent
+spider	araignée
+tail	queue
+boat	bateau
+car	voiture
+door	porte
+course	terrain, parcours
+center	centre
+city	ville
+home	maison
+house	maison
+room	pièce, chambre
+bed	lit
+plane	avion
+road	route
+way	chemin
+street	rue
+surface	surface
+school	école
+town	village
+travel	voyage
+port	port
+farm	ferme
+fire	feu
+ground	sol
+island	île
+land	terre
+light	lumière
+moon	lune
+mountain	montagne
+plant	plante
+river	rivière
+sea	mer
+ship	navire
+snow	neige
+star	étoile
+sun	soleil
+tree	arbre
+water	eau
+wind	vent
+wood	bois
+boy	garçon
+children	enfants
+family	famille
+friend	ami
+girl	fille
+group	groupe
+king	roi
+man	homme
+men	hommes
+mother	mère
+people	gens
+person	personne
+age	âge
+body	corps
+eye	yeux
+face	visage
+foot	le pied
+feet	les pieds
+hand	main
+head	tête
+country	pays
+day	jour
+Earth	la Terre
+East	l’est
+morning	matin
+night	nuit
+North	le nord
+South	le sud
+West	l’ouest
+world	monde
+year	année
+air	air
+area	aire, zone
+base	base
+book	livre
+box	boite
+class	classe
+color	couleur
+example	exemple
+figure	chiffre
+file	dossier
+form	forme
+game	jeu
+letter	lettre
+line	ligne
+list	liste
+machine	machine
+map	carte
+music	musique
+name	nom
+noun	nom
+number	numéro
+object	objet
+order	commande
+paper	papier
+part	part
+pattern	modèle
+picture	image
+piece	pièce
+place	place
+point	point
+power	pouvoir
+product	produit
+round	rond
+rule	règle
+science	science
+sentence	phrase
+song	chanson
+sound	son
+state	état
+step	pas
+story	histoire
+table	table
+test	test
+thing	chose
+towel	serviette
+voice	voix
+war	guerre
+wheel	roue
+word	mot
+work	travail
+inch	pouce
+measure	mesure
+mile	1,61 km
+minute	minute
+money	argent
+pound	une livre (monnaie)
+shape	forme
+side	côté
+size	taille
+time	temps
+unit	unité
+week	semaine
+beauty	beauté
+end	fin
+fact	un fait
+force	force
+heat	chaleur
+help	aide
+idea	idée
+interest	intérêt
+love	amour
+mind	esprit
+notice	remarque
+problem	problème
+question	question
+thought	pensée
+black	noir
+blue	bleu
+dark	noir, foncé
+gold	or
+green	vert
+red	rouge
+white	blanc
+first	premier
+five	cinq
+four	quatre
+hundred	cent
+second	second
+six	six
+ten	dix
+thousand	mille
+three	trois
+best	meilleur
+better	mieux, meilleur
+big	grand, gros, important
+large	large
+little	peu
+long	long
+old	vieux
+short	court
+young	jeune
+busy	occupé
+clear	clair, net
+common	commun, ordinaire
+complete	complet
+deep	profond
+direct	direct
+done	terminé
+dry	sec
+far	loin
+fast	rapide
+few	peu
+final	final, dernier
+fine	bien, agréable, plaisant
+free	libre
+full	plein
+good	bon, bien
+great	génial
+half	demi
+hard	difficile
+hot	chaud
+kind	gentil
+last	dernier
+late	en retard
+less	moins
+low	faible, bas
+new	nouveau
+next	suivant
+other	autre
+plain	ordinaire, évident
+possible	possible
+quick	rapide
+ready	prêt
+real	réel, vrai
+rich	riche
+right	droite, juste
+same	même, identique
+several	nombreux
+simple	simple
+slow	lent
+small	petit
+special	spécial
+strong	fort
+top	haut
+usual	habituel
+warm	chaud
+well	bien
+whole	entier
+act	agir
+add	ajouter
+answer	répondre
+appear	apparaître
+ask	demander
+be	être
+begin	commencer, débuter
+bring	apporter
+build	construire
+call	appeler
+care	prendre soin de
+carry	porter
+cause	provoquer
+change	changer
+check	contrôler
+close	fermer
+come	venir
+contain	contenir
+cover	couvrir
+cross	traverser
+cry	pleurer
+cut	couper
+decide	décider
+develop	développer
+differ	différer
+do	faire
+draw	dessiner
+drive	conduire
+ease	faciliter
+eat	manger
+fall	tomber
+feel	ressentir
+fill	remplir
+find	trouver
+fly	voler
+follow	suivre
+get	obtenir
+give	donner
+go	aller
+govern	gouverner
+grow	grandir
+happen	se passer
+have	avoir
+hear	entendre
+help	aider
+hold	tenir
+keep	garder
+know	savoir
+laugh	rire
+lay	coucher
+lead	mener
+learn	apprendre
+leave	quitter
+like	aimer
+listen	écouter
+live	vivre
+look	regarder
+love	aimer
+make	faire
+mark	marquer
+mean	signifier
+miss	manquer
+move	bouger
+need	avoir besoin
+note	noter
+open	ouvrir
+own	posséder
+pass	passer
+play	jouer
+press	appuyer
+produce	produire
+pull	tirer
+put	mettre
+rain	pleuvoir
+reach	atteindre
+read	lire
+record	enregistrer
+remember	se souvenir
+rest	se reposer
+run	courir
+say	dire
+see	voir
+seem	sembler
+serve	servir
+set	mettre en place
+show	montrer
+sing	chanter
+sit	s’asseoir
+sleep	dormir
+spell	épeler
+stand	se tenir debout
+start	commencer
+stay	rester
+stop	arrêter
+study	étudier
+take	prendre
+talk	parler
+teach	enseigner
+tell	dire
+think	penser
+travel	voyager
+try	essayer
+turn	tourner
+use	utiliser
+wait	attendre
+walk	marcher
+want	vouloir
+watch	regarder
+wonder	demander
+work	travailler
+write	écrire
+can, could	capacité, permission
+may, might	permission, éventualité, conseil
+must	obligation, forte certitude
+should	suggestion, conseil
+would	bon vouloir, volonté forte
+a	un, une
+an	un, une (devant une voyelle)
+any	tout, n’importe lequel
+certain	certain
+each	chaque
+every	tous
+one	un, une
+some	certain(e)(s)
+that	ce, cet, cette
+the	le, la
+these	ceux-ci, celles-ci
+this	ce, cet , cette
+those	ceux, celles
+he	il
+her	son, sa (pour un personnage féminin)
+him	son, sa (pour un personnage masculin)
+his	le sien, la sienne
+I	je
+it	il, elle, ce (pour un objet)
+me	moi
+my	mon, ma, mes
+our	notre
+she	elle
+their	leur
+them	leur
+they	ils, elles, eux
+us	nous
+we	nous
+you	toi
+your	ton, ta, tes
+how	comment
+what	quoi
+when	quand
+where	où
+which	quel, quelle
+while	tandis que
+who	qui
+why	pourquoi
+about	sur, au sujet de
+above	au-dessus
+after	après
+again	encore
+against	contre
+ago	il y a, depuis
+all	tout
+also	aussi
+always	toujours
+and	et
+as	comme
+at	à, de, en train de
+back	arrière
+before	avant
+behind	derrière
+between	entre
+both	tous les deux
+but	mais
+by	par, de
+down	en bas
+during	pendant
+enough	assez
+even	même
+far	loin
+for	pour
+from	de, a partir de
+here	ici
+if	si
+in	dans
+just	juste
+lot	beaucoup
+main	principal
+many	beaucoup
+more	plus
+most	le plus
+much	beaucoup
+near	près
+never	jamais
+no	non, marque de négation
+nothing	rien
+now	maintenant
+of	de
+off	éteint, absent
+often	souvent
+oh	oh
+on	sur, dans, par
+once	une fois que
+only	seulement
+or	ou
+out	dehors
+over	sur, plus de
+perhaps	peut-être
+self	soi
+since	depuis
+so	donc
+soon	bientôt
+still	encore
+such	tellement, tel
+than	que
+then	puis
+there	là
+though	bien que
+through	par
+to	à
+together	ensemble
+too	aussi
+toward	vers
+under	sous
+until	jusqu’à
+up	en haut
+very	très
+with	avec
+yes	oui
+yet	encore
